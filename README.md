@@ -72,4 +72,62 @@ module.exports = {
 };
 ```
 
+## eslint
+
+eslint 是一个插件化的 JavaScript 代码检测工具，它可以用于检查常见的 JavaScript 代码错误，也可以进行代码风格检查，帮助我们写出风格统一的代码，有效控制项目代码的质量。我们在这里采用 airbnb 开源的代码规范。
+
+- eslint
+- babel-eslint：使用 babel-eslint 解析器，默认的解析器为 esprima
+- eslint-confog-airbnb-base：airbnb 代码规范
+- eslint-loader：在 webpack 中配置 eslint-loader 以便在开发过程中实时检查语法
+- eslint-plugin-import：支持 import/export 语法
+
+```shell
+npm install --save-dev eslint babel-eslint eslint-confog-airbnb-base eslint-loader eslint-plugin-import
+```
+
+eslint 配置文件 `.eslintrc.js`：
+
+```javascript
+module.exports = {
+  root: true,
+  parser: 'babel-eslint',
+  parserOptions: {
+    sourceType: 'module'
+  },
+  env: {
+    browser: true, // browser 全局变量
+    node: true, //  Node.js 全局变量和 Node.js 作用域
+    es6: true // 支持除模块外所有 ECMAScript 6 特性
+  },
+  extends: 'airbnb-base',
+  'rules': {
+    // 开发环境下允许调试语句
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0
+  }
+}
+```
+
+在 webpack 中配置：
+
+```javascript
+module.exports = {
+    // ...
+    module: {
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loader: 'eslint-loader',
+                include: projectRoot,
+                exclude: /node_modules/
+            }
+        ],
+        loaders: [
+            // ...
+        ]
+    }
+};
+```
+
 
