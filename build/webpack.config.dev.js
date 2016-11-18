@@ -7,5 +7,15 @@ module.exports = {
         path: './dev',
         publicPath: '/dev/',
         filename: 'bundle.js'
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+                include: projectRoot
+            }
+        ]
     }
 };
