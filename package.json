@@ -1,0 +1,22 @@
+{
+  "name": "project-tmpl",
+  "version": "1.0.0",
+  "description": "a project tmpl with webpack, babel and eslint",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --inline --hot --port=3004 --host 0.0.0.0 --config ./build/webpack.config.dev.js",
+    "lint": "eslint --ext .js src"
+  },
+  "keywords": [
+    "webpack",
+    "babel",
+    "eslint"
+  ],
+  "author": "mr.zhushijie@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
